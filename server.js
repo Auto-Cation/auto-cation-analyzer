@@ -1,20 +1,30 @@
 const express = require("express");
+const cors = require("cors");
 const path = require("path");
 const uploadRoutes = require("./routes/upload");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
+
+app.use(cors({
+  origin: ["https://auto-cation.com", "https://www.auto-cation.com"],
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
+
+app.options("*", cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve files from project root so test.html can load
 app.use(express.static(__dirname));
-
-// Upload route
 app.use("/api", uploadRoutes);
 
 app.listen(PORT, () => {
   console.log(`Auto-Cation backend running on port ${PORT}`);
 });
+
+
+
+
 
