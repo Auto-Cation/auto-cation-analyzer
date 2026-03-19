@@ -19,8 +19,10 @@ async function extractTextFromPDF(pdfPath) {
 
   // Convert PDF -> PNG images
   execSync(
-    `"C:\\poppler\\Library\\bin\\pdftoppm.exe" -png -r 300 "${pdfPath}" "${outputPrefix}"`
-  );
+    execSync(
+  `pdftoppm -png -r 300 "${pdfPath}" "${outputPrefix}"`
+);
+
 
   const files = fs
     .readdirSync(uploadsDir)
