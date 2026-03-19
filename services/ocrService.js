@@ -18,10 +18,7 @@ async function extractTextFromPDF(pdfPath) {
   }
 
   // Convert PDF -> PNG images
-  execSync(
-    execSync(
-  `pdftoppm -png -r 300 "${pdfPath}" "${outputPrefix}"`
-);
+  execSync(`pdftoppm -png -r 300 "${pdfPath}" "${outputPrefix}"`);
 
 
   const files = fs
